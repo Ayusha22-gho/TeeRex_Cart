@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useSnackbar } from "notistack";
 
 import axios from "axios"
 import Header from "./components/Header"
@@ -11,7 +10,6 @@ import './App.css'
 
 
 function App() {
-  const { enqueueSnackbar } = useSnackbar();
 
   const [productDetails, setProducts] = useState([])
   const [cartItems, setCartItems] = useState([]);
@@ -48,13 +46,7 @@ function App() {
           { ...itemExists, qty: itemExists.qty + 1 } : item)
         );
       } else {
-        enqueueSnackbar(
-          "Product Out of stock.",
-          {
-            variant: "error",
-          }
-
-        );
+        alert("Product out of stock")
 
       }
 
