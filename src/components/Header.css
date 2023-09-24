@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color:greenyellow
+}
+
+.logo {
+    display: flex;
+    gap :20px;
+    margin-right: 40px;
+}
+.cartIcon {
+    position: relative;
+}
+.cartIcon >span {
+    position: absolute;
+    top :-10px;
+    font-weight: bold;
+}
