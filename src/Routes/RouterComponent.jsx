@@ -17,8 +17,7 @@ const RouterComponent = ({productDetails,
      handleFilterChange,
      filters,
      filterProduct,
-     priceFiltered,
-     priceFilter
+    
     }) => {
     return (
 
@@ -33,8 +32,6 @@ const RouterComponent = ({productDetails,
                 handleFilterChange = {handleFilterChange}
                 filters = {filters}
                 filterProduct = {filterProduct}
-                priceFiltered={priceFiltered}
-                priceFilter = {priceFilter}
                
                 />} />
             <Route path="/checkout"

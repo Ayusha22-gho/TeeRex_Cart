@@ -15,13 +15,11 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [filterProduct, setFilteredProducts] = useState(productDetails);
   const [search, setSearch] = useState("");
-  const [priceFilter, setPriceFilter] = useState([])
-  const [currentFilter, setCurrentFilter] = useState("");
-
   const [filters, setFilters] = useState({
     gender: [],
     color: [],
-    type: []
+    type: [],
+    price :[]
   })
 
   const fetchProducts = async () => {
@@ -97,7 +95,7 @@ function App() {
       if (e.response.status === 404) {
         setProducts([])
       } else {
-
+        console.log("something went wrong")
       }
     }
 
@@ -112,60 +110,46 @@ function App() {
           ? prevFilters[key].filter((item) => item !== value)
           : [...prevFilters[key], value]
       }
-    )
+    )      
     )
     console.log("filters", filters)
   }
+
   function filterProducts() {
     const filteredProducts = productDetails.filter((product) => {
-      const genderFilter =
+       const genderFilter =
         filters.gender.length === 0 ||
         filters.gender.includes(product.gender);
       const colorFilter =
         filters.color.length === 0 || filters.color.includes(product.color);
       const typeFilter =
         filters.type.length === 0 || filters.type.includes(product.type)
+      const priceFilter = handlePriceRangeFilter(product);
+      return genderFilter && colorFilter && typeFilter && priceFilter;
 
-      return genderFilter && colorFilter && typeFilter;
-    });
-
+    })
     setFilteredProducts(filteredProducts);
     //console.log("filteredProducts",filterProduct);
   }
-  const handlePriceRangeFilter = () => {
-    let tempProducts = productDetails.filter((product) => {
-      if (priceFilter.indexOf("0-Rs250") !== -1) {
+
+
+  const handlePriceRangeFilter = (product) => {
+      if (filters.price.indexOf("0-Rs250") !== -1) {
         return product.price <= 250;
       }
-      if (priceFilter.includes("250-450")) {
+      if (filters.price.indexOf("250-450")) {
         return (product.price >= 251 && product.price <= 450);
       }
-      if (priceFilter.indexOf("450+") !== -1) {
+      if (filters.price.indexOf("450+") !== -1) {
         return product.price >= 451;
       }
-    })
-    console.log("pricefilter",priceFilter)
-    setFilteredProducts(tempProducts)
-
+    
+    // console.log("pricefilter",priceFilter)
+    // setFilteredProducts(tempProducts)
+   
   }
 
-  const priceFiltered = (event, selected, filter) => {
-    const {
-      target: { checked },
-    } = event;
-
-    if (checked) {
-      const filterValues = [...priceFilter, selected];
-      setPriceFilter(filterValues);
-     
-    } else {
-      const filterValues = [...priceFilter.filter((sv) => sv !== selected)];
-      setPriceFilter(filterValues);
-    }
-    console.log("priceFilter",priceFilter)
-    setCurrentFilter(filter);
-    console.log("currentfilter",filter)
-  };
+ 
 
 
 
@@ -179,8 +163,8 @@ function App() {
   useEffect(() => {
 
     filterProducts();
-    handlePriceRangeFilter(currentFilter)
-  }, [filters,priceFilter,currentFilter])
+   
+  }, [filters])
 
 
   return (
@@ -197,9 +181,7 @@ function App() {
         handleFilterChange={handleFilterChange}
         filters={filters}
         filterProduct={filterProduct}
-        priceFiltered={priceFiltered}
-        priceFilter ={priceFilter}
-
+       
       />
     </Router>
   )

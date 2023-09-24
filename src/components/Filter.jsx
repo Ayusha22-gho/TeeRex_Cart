@@ -1,5 +1,5 @@
 import "./Filter.css"
-const Filter = ({filters,handleFilterChange,priceFiltered,priceFilter}) => {
+const Filter = ({filters,handleFilterChange}) => {
 return (
     <div className="menu">
         <div className="item">
@@ -26,7 +26,7 @@ return (
             <h3>Gender</h3>
                 {
                    ["Men", "Women"].map((gender) => (
-                     <div className="filters">
+                     <div className="filters" >
                     <input type="checkbox" name={gender} className="filterCheckBox" 
                     value = {gender} checked = { filters.gender.includes(gender)}
                     onChange = {() => handleFilterChange("gender",gender)}
@@ -41,13 +41,13 @@ return (
             <h3>Price</h3>
                 {
                     ["0-Rs250" ,"251-450","450+"].map((price)=> (
-                        <div className="filters" >
+                        <div className="filters"  >
                             <input type="checkbox" name={price}
                             value = {price}
-                            checked = {priceFilter.includes(price)}
-                            onClick = {(e)=> {
-                            //    handleFilterChange("price",price)
-                            priceFiltered(e,price,price)
+                            checked = {filters.price.includes(price)}
+                            onChange = {()=> {
+                              handleFilterChange("price",price)
+                           // priceFiltered(e,price,price)
                             }
                         }
                             
@@ -60,7 +60,7 @@ return (
             <div className="color">
                 <h3>Type</h3>
                 {["Polo","Hoodie","Basic"].map((type)=> (
-                     <div className="filters">
+                     <div className="filters" >
                     <input type="checkbox" name={type} 
                     
                     value = {type} checked = { filters.type.includes(type)}
