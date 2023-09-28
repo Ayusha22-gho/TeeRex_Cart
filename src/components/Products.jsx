@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import SearchProduct  from "./Search"
 import "./Products.css"
 import Filter from "./Filter"

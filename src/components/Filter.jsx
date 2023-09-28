@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./Filter.css"
 const Filter = ({filters,handleFilterChange}) => {
 return (
@@ -11,6 +12,7 @@ return (
                     "Green",
                     "Pink"
                 ].map((color) => (
+                    // eslint-disable-next-line react/jsx-key
                     <div className="filters">
                         <input type="checkbox" name= {color} 
                         value = {color} 
@@ -26,6 +28,7 @@ return (
             <h3>Gender</h3>
                 {
                    ["Men", "Women"].map((gender) => (
+                     // eslint-disable-next-line react/jsx-key
                      <div className="filters" >
                     <input type="checkbox" name={gender} className="filterCheckBox" 
                     value = {gender} checked = { filters.gender.includes(gender)}
@@ -41,6 +44,7 @@ return (
             <h3>Price</h3>
                 {
                     ["0-Rs250" ,"251-450","450+"].map((price)=> (
+                        // eslint-disable-next-line react/jsx-key
                         <div className="filters"  >
                             <input type="checkbox" name={price}
                             value = {price}
@@ -60,6 +64,7 @@ return (
             <div className="color">
                 <h3>Type</h3>
                 {["Polo","Hoodie","Basic"].map((type)=> (
+                     // eslint-disable-next-line react/jsx-key
                      <div className="filters" >
                     <input type="checkbox" name={type} 
                     

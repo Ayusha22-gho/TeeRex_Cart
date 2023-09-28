@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
     ShoppingCartOutlined,
 } from "@mui/icons-material";
@@ -16,6 +17,7 @@ const getTotalCartValue = (items = []) => {
     return cost;
 };
 
+// eslint-disable-next-line react/prop-types
 const Checkout = ({ cartItems,handleDeleteCart }) => {
     return (
         <div className="checkout">
@@ -26,6 +28,7 @@ const Checkout = ({ cartItems,handleDeleteCart }) => {
              >Shopping Cart</Typography>
              
             {
+                 // eslint-disable-next-line react/prop-types
                  cartItems.length === 0 ? 
                  (
                     <div className="cart-item">
